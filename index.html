@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Front Office Services Comprehensive Review Quiz</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 15px;
+        }
+        .question-block {
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 6px;
+            background-color: #fafbfc;
+            border-left: 5px solid #3498db;
+        }
+        .question-text {
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+        .options-list {
+            list-style: none;
+            padding: 0;
+        }
+        .option-item {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            padding: 10px 15px;
+            background: #fff;
+            border: 1px solid #dcdde1;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        label:hover {
+            background: #f1f2f6;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        button.submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 30px;
+        }
+        button.submit-btn:hover {
+            background: #27ae60;
+        }
+        .explanation {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            background-color: #edf2f7;
+            border-radius: 4px;
+            font-size: 0.95em;
+            color: #4a5568;
+            border-top: 2px dashed #cbd5e0;
+        }
+        .correct-card {
+            border-left-color: #2ecc71 !important;
+            background-color: #e8f8f5;
+        }
+        .wrong-card {
+            border-left-color: #e74c3c !important;
+            background-color: #fdedec;
+        }
+        .score-display {
+            display: none;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 6px;
+            background: #34495e;
+            color: white;
+        }
+        .post-quiz-container {
+            display: none;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .analysis-section {
+            margin-bottom: 25px;
+        }
+        .analysis-title {
+            font-size: 1.3em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: bold;
+            border-left: 4px solid #9b59b6;
+            padding-left: 10px;
+        }
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .analysis-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .analysis-card.weak {
+            border-top: 4px solid #e74c3c;
+        }
+        .analysis-card.strong {
+            border-top: 4px solid #2ecc71;
+        }
+        .action-menu {
+            border-top: 2px dashed #e2e8f0;
+            padding-top: 20px;
+            text-align: center;
+        }
+        .action-title {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+        .action-btns {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .menu-btn {
+            padding: 12px 25px;
+            font-size: 1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-review {
+            background: #3498db;
+            color: white;
+        }
+        .btn-review:hover {
+            background: #2980b9;
+        }
+        .btn-restart {
+            background: #9b59b6;
+            color: white;
+        }
+        .btn-restart:hover {
+            background: #8e44ad;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Front Office Services OHS Quiz (30 Items)</h1>
+    <div id="scoreArea" class="score-display"></div>
+    
+    <form id="quizForm">
+        <!-- Q1 -->
+        <div class="question-block" id="q1-block" data-category="Ergonomic">
+            <div class="question-text">1. A receptionist sitting at a desk that is too low, typing thousands of guest profiles back-to-back, experiences severe wrist pain. What category of hazard is this?</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q1" value="A"> Mechanical Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q1" value="B"> Ergonomic Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q1" value="C"> Chemical Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q1" value="D"> Biological Hazard</label></li>
+            </ul>
+            <div class="explanation" id="exp1">
+                <strong>Explanation:</strong> Under "What I Know" Item 1, a receptionist sitting at an improperly adjusted desk typing repetitively is classified as an Ergonomic Hazard[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="question-block" id="q2-block" data-category="Chemical">
+            <div class="question-text">2. Spilling a bottle of toxic liquid surface cleaner right next to the front office ventilation system introduces risk via which category?</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q2" value="A"> Chemical Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q2" value="B"> Biological Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q2" value="C"> Fire Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q2" value="D"> Ergonomic Hazard</label></li>
+            </ul>
+            <div class="explanation" id="exp2">
+                <strong>Explanation:</strong> Under "What I Know" Item 2, toxic liquid surface cleaners fall directly under the Chemical Hazard parameter[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="question-block" id="q3-block" data-category="Fire">
+            <div class="question-text">3. If a small wire sparks inside a front desk ventilation fan and ignites the plastic housing frame, what category should it be cataloged under?</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q3" value="A"> Mechanical Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q3" value="B"> Ergonomic Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q3" value="C"> Fire Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q3" value="D"> Biological Hazard</label></li>
+            </ul>
+            <div class="explanation" id="exp3">
+                <strong>Explanation:</strong> According to "What I Know" Item 3, sparking components causing flames to erupt are designated as Fire Hazards[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="question-block" id="q4-block" data-category="Biological">
+            <div class="question-text">4. Standing near a dirty air conditioning terminal that is actively blowing out mold spores and bacterial contaminants represents what type of hazard?</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q4" value="A"> Chemical Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q4" value="B"> Mechanical Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q4" value="C"> Biological Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q4" value="D"> Fire Hazard</label></li>
+            </ul>
+            <div class="explanation" id="exp4">
+                <strong>Explanation:</strong> "What I Know" Item 4 notes that mold spores and infectious bacteria from conditioning equipment fall under Biological Hazards[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="question-block" id="q5-block" data-category="Mechanical">
+            <div class="question-text">5. Catching your uniform or hair in the uncovered rotating rollers of an active paper-shredding device describes a:</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q5" value="A"> Ergonomic Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q5" value="B"> Mechanical Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q5" value="C"> Chemical Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q5" value="D"> Fire Hazard</label></li>
+            </ul>
+            <div class="explanation" id="exp5">
+                <strong>Explanation:</strong> In "What I Know" Item 5, danger associated with gears, machinery teeth, or open paper shredders is classified as a Mechanical Hazard[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="question-block" id="q6-block" data-category="Biological">
+            <div class="question-text">6. How are threats to human health caused by living microorganisms explicitly defined in front office settings?</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q6" value="A"> Chemical Hazards</label></li>
+                <li class="option-item"><label><input type="radio" name="q6" value="B"> Biological Hazards</label></li>
+                <li class="option-item"><label><input type="radio" name="q6" value="C"> Ergonomic Hazards</label></li>
+                <li class="option-item"><label><input type="radio" name="q6" value="D"> Mechanical Hazards</label></li>
+            </ul>
+            <div class="explanation" id="exp6">
+                <strong>Explanation:</strong> Under "What Is It", Biological Hazards are specifically defined as threats to human health caused by living microorganisms[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="question-block" id="q7-block" data-category="Chemical">
+            <div class="question-text">7. Hazards resulting specifically from accidents involving toxic substances or poorly handled fluids are termed:</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q7" value="A"> Chemical Hazards</label></li>
+                <li class="option-item"><label><input type="radio" name="q7" value="B"> Fire Hazards</label></li>
+                <li class="option-item"><label><input type="radio" name="q7" value="C"> Mechanical Hazards</label></li>
+                <li class="option-item"><label><input type="radio" name="q7" value="D"> Ergonomic Hazards</label></li>
+            </ul>
+            <div class="explanation" id="exp7">
+                <strong>Explanation:</strong> The definition section of "What Is It" marks toxic-agent handling accidents directly under Chemical Hazards[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="question-block" id="q8-block" data-category="Ergonomic">
+            <div class="question-text">8. Physical factors that disrupt and cause harm to the human musculoskeletal system over extended timelines are termed:</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q8" value="A"> Biological Hazards</label></li>
+                <li class="option-item"><label><input type="radio" name="q8" value="B"> Mechanical Hazards</label></li>
+                <li class="option-item"><label><input type="radio" name="q8" value="C"> Ergonomic Hazards</label></li>
+                <li class="option-item"><label><input type="radio" name="q8" value="D"> Fire Hazards</label></li>
+            </ul>
+            <div class="explanation" id="exp8">
+                <strong>Explanation:</strong> The "What Is It" chart outlines that factors causing damage to muscles or skeletal alignments over time fall under Ergonomic Hazards[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="question-block" id="q9-block" data-category="Biological">
+            <div class="question-text">9. Which of the following matches the exact front-office example provided for a Biological Hazard in the module text?</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q9" value="A"> Refilling heavy printer toner assemblies</label></li>
+                <li class="option-item"><label><input type="radio" name="q9" value="B"> Eating contaminated food at the workspace or exposure to airborne viruses</label></li>
+                <li class="option-item"><label><input type="radio" name="q9" value="C"> Overloading multi-plug adapters underneath a processing terminal</label></li>
+                <li class="option-item"><label><input type="radio" name="q9" value="D"> Experiencing low lumens and poor lighting while tracking cash folders</label></li>
+            </ul>
+            <div class="explanation" id="exp9">
+                <strong>Explanation:</strong> In "What Is It", eating spoiled food at the desk or catching airborne viruses are explicit biological examples[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="question-block" id="q10-block" data-category="Chemical">
+            <div class="question-text">10. What specific example of a Chemical Hazard is explicitly provided under the core reference table?</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q10" value="A"> Inhaling fumes from harsh cleaning agents or refilling printer ink cartridges incorrectly</label></li>
+                <li class="option-item"><label><input type="radio" name="q10" value="B"> Tripping over untethered networking lines near entry areas</label></li>
+                <li class="option-item"><label><input type="radio" name="q10" value="C"> Getting pinched by sharp physical folder dividers</label></li>
+                <li class="option-item"><label><input type="radio" name="q10" value="D"> Sitting on unadjusted low chairs without back support structures</label></li>
+            </ul>
+            <div class="explanation" id="exp10">
+                <strong>Explanation:</strong> The "What Is It" table states that inhaling harsh cleaner vapors or bad ink-refilling maneuvers are prime chemical examples[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q11 -->
+        <div class="question-block" id="q11-block" data-category="Mechanical">
+            <div class="question-text">11. According to the lesson material, a mechanical hazard scenario in front office environments includes:</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q11" value="A"> Catching skin infections via communal telephone handles</label></li>
+                <li class="option-item"><label><input type="radio" name="q11" value="B"> Getting burned by a sparking telephone wire or cut by sharp equipment edges</label></li>
+                <li class="option-item"><label><input type="radio" name="q11" value="C"> Inhaling highly concentrated industrial solvent vapors</label></li>
+            </ul>
+            <div class="explanation" id="exp11">
+                <strong>Explanation:</strong> Mechanical hazards under the "What Is It" segment encompass getting cut by sharp office structures or burned by sparking telephone hardware wires[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q12 -->
+        <div class="question-block" id="q12-block" data-category="Fire">
+            <div class="question-text">12. Overloading power sockets with too many plugs at the front desk workstation constitutes an example of what?</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q12" value="A"> Mechanical Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q12" value="B"> Ergonomic Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q12" value="C"> Fire Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q12" value="D"> Chemical Hazard</label></li>
+            </ul>
+            <div class="explanation" id="exp12">
+                <strong>Explanation:</strong> Under "What Is It", stuffing numerous adapters into single socket locations at front desk areas is categorized explicitly as a Fire Hazard[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q13 -->
+        <div class="question-block" id="q13-block" data-category="Ergonomic">
+            <div class="question-text">13. Poor lighting conditions, uncomfortable counter heights, and repetitive registration logging tasks represent examples of:</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q13" value="A"> Ergonomic Hazards</label></li>
+                <li class="option-item"><label><input type="radio" name="q13" value="B"> Biological Hazards</label></li>
+                <li class="option-item"><label><input type="radio" name="q13" value="C"> Mechanical Hazards</label></li>
+                <li class="option-item"><label><input type="radio" name="q13" value="D"> Chemical Hazards</label></li>
+            </ul>
+            <div class="explanation" id="exp13">
+                <strong>Explanation:</strong> As listed under the examples column of "What Is It", poor illumination and poorly fitted terminal setups constitute Ergonomic Hazards[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q14 -->
+        <div class="question-block" id="q14-block" data-category="Regulations">
+            <div class="question-text">14. True or False: Maintaining a secure and safe front-office environment is strictly the duty of hotel managers alone.</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q14" value="A"> True</label></li>
+                <li class="option-item"><label><input type="radio" name="q14" value="B"> False</label></li>
+            </ul>
+            <div class="explanation" id="exp14">
+                <strong>Explanation:</strong> In "What's More" Item 1, the premise that line workers carry no safety duty is False. Shared duty is mandated[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q15 -->
+        <div class="question-block" id="q15-block" data-category="Ergonomic">
+            <div class="question-text">15. True or False: If left uncorrected over extended timelines, ergonomic hazards can directly lead to bad eyesight, neck pain, and back strain.</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q15" value="A"> True</label></li>
+                <li class="option-item"><label><input type="radio" name="q15" value="B"> False</label></li>
+            </ul>
+            <div class="explanation" id="exp15">
+                <strong>Explanation:</strong> In "What's More" Item 2, it is explicitly True that bad eyesight, neck pain, and lumbar strain are linked to faulty ergonomics[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q16 -->
+        <div class="question-block" id="q16-block" data-category="Chemical">
+            <div class="question-text">16. True or False: Chemical hazards can cause immediate injuries or create long-term harm through continuous skin contact, inhalation, or ingestion pathways.</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q16" value="A"> True</label></li>
+                <li class="option-item"><label><input type="radio" name="q16" value="B"> False</label></li>
+            </ul>
+            <div class="explanation" id="exp16">
+                <strong>Explanation:</strong> "What's More" Item 3 confirms it is True that chemical exposure poses risks via immediate or incremental tracking paths like touch or breathing[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q17 -->
+        <div class="question-block" id="q17-block" data-category="Regulations">
+            <div class="question-text">17. Which item represents an objective of this exploratory course module?</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q17" value="A"> Learning how to mix alternative chemical surface elements</label></li>
+                <li class="option-item"><label><input type="radio" name="q17" value="B"> Repairing the internal electrical loops of reception fans</label></li>
+                <li class="option-item"><label><input type="radio" name="q17" value="C"> Identifying front office services hazards, risks, and their corresponding indicators</label></li>
+                <li class="option-item"><label><input type="radio" name="q17" value="D"> Decreasing the total number of registration tasks given to agents</label></li>
+            </ul>
+            <div class="explanation" id="exp17">
+                <strong>Explanation:</strong> Under "What I Need to Know", an expected outcome is identifying hazards/risks and tracking their specific workplace indicators[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q18 -->
+        <div class="question-block" id="q18-block" data-category="Ergonomic">
+            <div class="question-text">18. What core body mechanism is directly impacted by ergonomic issues when an employee stays in static, awkward positions?</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q18" value="A"> Central Nervous System</label></li>
+                <li class="option-item"><label><input type="radio" name="q18" value="B"> Musculoskeletal System</label></li>
+                <li class="option-item"><label><input type="radio" name="q18" value="C"> Cardiovascular System</label></li>
+                <li class="option-item"><label><input type="radio" name="q18" value="D"> Digestive System</label></li>
+            </ul>
+            <div class="explanation" id="exp18">
+                <strong>Explanation:</strong> Under the table in "What Is It", ergonomic hazards are defined as factors that specifically harm the musculoskeletal system[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q19 -->
+        <div class="question-block" id="q19-block" data-category="Mechanical">
+            <div class="question-text">19. If a receptionist is required to fix an unstable, jagged metal tray inside a receipt printer, they must watch out for what hazard indicator?</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q19" value="A"> Mechanical Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q19" value="B"> Chemical Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q19" value="C"> Biological Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q19" value="D"> Ergonomic Hazard</label></li>
+            </ul>
+            <div class="explanation" id="exp19">
+                <strong>Explanation:</strong> Physical cuts from sharp tool boundaries or active device assemblies fall under Mechanical Hazards in the "What Is It" table[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q20 -->
+        <div class="question-block" id="q20-block" data-category="Fire">
+            <div class="question-text">20. Faulty or frayed wiring lines on a computer tower at the check-in desk present a primary threat of:</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q20" value="A"> Biological infection</label></li>
+                <li class="option-item"><label><input type="radio" name="q20" value="B"> Uncontrolled fire due to negligence or faulty components</label></li>
+                <li class="option-item"><label><input type="radio" name="q20" value="C"> Musculoskeletal compression</label></li>
+                <li class="option-item"><label><input type="radio" name="q20" value="D"> Toxic skin assimilation</label></li>
+            </ul>
+            <div class="explanation" id="exp20">
+                <strong>Explanation:</strong> Fire hazards are defined in "What Is It" as risks of uncontrolled flames stemming from negligence or faulty wiring networks[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q21 -->
+        <div class="question-block" id="q21-block" data-category="Chemical">
+            <div class="question-text">21. An entry-level concierge agent refuels heavy ink reservoirs without gloves or safety shields, splashing chemical fluid into their eyes. This matches which definition?</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q21" value="A"> Chemical Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q21" value="B"> Biological Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q21" value="C"> Fire Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q21" value="D"> Ergonomic Hazard</label></li>
+            </ul>
+            <div class="explanation" id="exp21">
+                <strong>Explanation:</strong> Mismanagement of printer ink replenishment is an explicit example of a Chemical Hazard in the "What Is It" overview[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q22 -->
+        <div class="question-block" id="q22-block" data-category="Regulations">
+            <div class="question-text">22. Which phrase does the module mention as part of clarifying workplace safety procedures?</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q22" value="A"> Maximizing workspace storage volume</label></li>
+                <li class="option-item"><label><input type="radio" name="q22" value="B"> Explaining regulations and hazard control practices</label></li>
+                <li class="option-item"><label><input type="radio" name="q22" value="C"> Increasing client data entry velocity</label></li>
+                <li class="option-item"><label><input type="radio" name="q22" value="D"> Memorizing printer mechanical blueprints</label></li>
+            </ul>
+            <div class="explanation" id="exp22">
+                <strong>Explanation:</strong> The "What I Need to Know" curriculum segment aims to help students clarify and explain regulations and control practices[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q23 -->
+        <div class="question-block" id="q23-block" data-category="Biological">
+            <div class="question-text">23. Inhaling air directly from an unserviced vents cluster contaminated with stagnant water vapor and micro-bacteria is an example of a:</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q23" value="A"> Chemical Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q23" value="B"> Ergonomic Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q23" value="C"> Biological Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q23" value="D"> Mechanical Hazard</label></li>
+            </ul>
+            <div class="explanation" id="exp23">
+                <strong>Explanation:</strong> Airborne micro-pathogens and bacterial colonies are tracked as Biological Hazards in Module 5 section items[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q24 -->
+        <div class="question-block" id="q24-block" data-category="Ergonomic">
+            <div class="question-text">24. What type of physical environment feature can lead directly to bad eyesight according to Module 5?</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q24" value="A"> Toxic floor polish vapors</label></li>
+                <li class="option-item"><label><input type="radio" name="q24" value="B"> Open shredder covers</label></li>
+                <li class="option-item"><label><input type="radio" name="q24" value="C"> Poor lighting in the workplace</label></li>
+                <li class="option-item"><label><input type="radio" name="q24" value="D"> Unwashed desk telephone equipment</label></li>
+            </ul>
+            <div class="explanation" id="exp24">
+                <strong>Explanation:</strong> Under "What Is It" and "What's More", poor lighting is an ergonomic factor that causes eye strain and vision issues[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q25 -->
+        <div class="question-block" id="q25-block" data-category="Mechanical">
+            <div class="question-text">25. If a front desk worker notices a fellow employee bypassing safety guards on a heavy paper cutter, they are encountering a:</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q25" value="A"> Mechanical Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q25" value="B"> Chemical Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q25" value="C"> Fire Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q25" value="D"> Ergonomic Hazard</label></li>
+            </ul>
+            <div class="explanation" id="exp25">
+                <strong>Explanation:</strong> Cutting tools and machinery with sharp physical bypasses represent explicit Mechanical Hazards[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q26 -->
+        <div class="question-block" id="q26-block" data-category="Fire">
+            <div class="question-text">26. Which phrase defines the risk profile of Fire Hazards according to the module text?</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q26" value="A"> Threats to human systems caused by viral spread</label></li>
+                <li class="option-item"><label><input type="radio" name="q26" value="B"> Risks of uncontrolled fire due to negligence or faulty wiring</label></li>
+                <li class="option-item"><label><input type="radio" name="q26" value="C"> Physical factors damaging structural spinal balance</label></li>
+                <li class="option-item"><label><input type="radio" name="q26" value="D"> Accidents with unsealed chemical compounds</label></li>
+            </ul>
+            <div class="explanation" id="exp26">
+                <strong>Explanation:</strong> The precise dictionary entry for Fire Hazards in "What Is It" names negligence and faulty wiring as key causes of uncontrolled fire[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q27 -->
+        <div class="question-block" id="q27-block" data-category="Ergonomic">
+            <div class="question-text">27. Repetitive entry of thousands of customer profiles onto a computer console without adequate rest breaks targets which bodily system?</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q27" value="A"> Digestive system tracks</label></li>
+                <li class="option-item"><label><input type="radio" name="q27" value="B"> Musculoskeletal system framework</label></li>
+                <li class="option-item"><label><input type="radio" name="q27" value="C"> Respiratory system tracts</label></li>
+                <li class="option-item"><label><input type="radio" name="q27" value="D"> Dermal layers</label></li>
+            </ul>
+            <div class="explanation" id="exp27">
+                <strong>Explanation:</strong> "What Is It" emphasizes that repetitive office strain targets and harms the human musculoskeletal system[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q28 -->
+        <div class="question-block" id="q28-block" data-category="Chemical">
+            <div class="question-text">28. Continuous skin contact with harsh surface chemicals in the hotel lobby can cause skin problems. This is an example of what?</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q28" value="A"> Biological Hazard exposure</label></li>
+                <li class="option-item"><label><input type="radio" name="q28" value="B"> Chemical Hazard exposure</label></li>
+                <li class="option-item"><label><input type="radio" name="q28" value="C"> Mechanical Hazard exposure</label></li>
+                <li class="option-item"><label><input type="radio" name="q28" value="D"> Ergonomic Hazard exposure</label></li>
+            </ul>
+            <div class="explanation" id="exp28">
+                <strong>Explanation:</strong> Under "What's More" Item 3, continuous skin contact or inhalation of toxic cleaning agents is categorized as a Chemical Hazard[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q29 -->
+        <div class="question-block" id="q29-block" data-category="Biological">
+            <div class="question-text">29. An office space with a high accumulation of dust mites, mold spores, and airborne viruses inside the check-in reception stall represents a:</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q29" value="A"> Fire Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q29" value="B"> Mechanical Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q29" value="C"> Biological Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q29" value="D"> Ergonomic Hazard</label></li>
+            </ul>
+            <div class="explanation" id="exp29">
+                <strong>Explanation:</strong> Living bacterial growths and airborne virus elements correspond entirely to Biological Hazards[cite: 2].
+            </div>
+        </div>
+
+        <!-- Q30 -->
+        <div class="question-block" id="q30-block" data-category="Mechanical">
+            <div class="question-text">30. What specific hazard type focuses on office machines, moving components, and risk of cuts or pinches from sharp edges?</div>
+            <ul class="options-list">
+                <li class="option-item"><label><input type="radio" name="q30" value="A"> Mechanical Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q30" value="B"> Fire Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q30" value="C"> Chemical Hazard</label></li>
+                <li class="option-item"><label><input type="radio" name="q30" value="D"> Ergonomic Hazard</label></li>
+            </ul>
+            <div class="explanation" id="exp30">
+                <strong>Explanation:</strong> As explicitly defined under the "What Is It" table, hazards involving machinery parts and sharp equipment edges are Mechanical Hazards[cite: 2].
+            </div>
+        </div>
+
+        <button type="button" class="submit-btn" id="submitBtn" onclick="gradeQuiz()">Submit Answers</button>
+    </form>
+
+    <!-- Post Quiz Analysis & Choice Menu Component -->
+    <div id="postQuizArea" class="post-quiz-container">
+        <div class="analysis-section">
+            <div class="analysis-title">Performance Analytics Breakdown</div>
+            <p id="analysisSummary"></p>
+            <div class="analysis-grid" id="categoryGrid">
+                <!-- Populated dynamically via JS -->
+            </div>
+        </div>
+        
+        <div class="action-menu">
+            <div class="action-title">What would you like to do next?</div>
+            <div class="action-btns">
+                <button type="button" class="menu-btn btn-review" onclick="filterWrongQuestions()">Review Only Questions I Got Wrong</button>
+                <button type="button" class="menu-btn btn-restart" onclick="resetQuiz()">Clear & Take Another Set / Restart</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const answers = {
+        q1: "B", q2: "A", q3: "C", q4: "C", q5: "B",
+        q6: "B", q7: "A", q8: "C", q9: "B", q10: "A",
+        q11: "B", q12: "C", q13: "A", q14: "B", q15: "A",
+        q16: "A", q17: "C", q18: "B", q19: "A", q20: "B",
+        q21: "A", q22: "B", q23: "C", q24: "C", q25: "A",
+        q26: "B", q27: "B", q28: "B", q29: "C", q30: "A"
+    };
+
+    function gradeQuiz() {
+        let score = 0;
+        const totalQuestions = Object.keys(answers).length;
+        
+        // Track stats per topic category for analytics
+        const categoryStats = {
+            Ergonomic: { total: 0, correct: 0 },
+            Chemical: { total: 0, correct: 0 },
+            Fire: { total: 0, correct: 0 },
+            Biological: { total: 0, correct: 0 },
+            Mechanical: { total: 0, correct: 0 },
+            Regulations: { total: 0, correct: 0 }
+        };
+
+        for (let key in answers) {
+            const selectedOption = document.querySelector(`input[name="${key}"]:checked`);
+            const questionBlock = document.getElementById(`${key}-block`);
+            const explanationBlock = document.getElementById(`exp${key.replace('q', '')}`);
+            const cat = questionBlock.getAttribute('data-category');
+            
+            categoryStats[cat].total++;
+            
+            if (selectedOption && selectedOption.value === answers[key]) {
+                score++;
+                categoryStats[cat].correct++;
+                questionBlock.classList.add('correct-card');
+                questionBlock.classList.remove('wrong-card');
+            } else {
+                questionBlock.classList.add('wrong-card');
+                questionBlock.classList.remove('correct-card');
+            }
+            explanationBlock.style.display = 'block';
+            questionBlock.style.display = 'block'; // Ensure it's visible initially
+        }
+
+        // Show standard score panel
+        const scoreArea = document.getElementById('scoreArea');
+        scoreArea.innerHTML = `Quiz Complete! Your Score: ${score} / ${totalQuestions}`;
+        scoreArea.style.display = 'block';
+
+        // Generate Topic Analysis Report
+        generateAnalysis(score, totalQuestions, categoryStats);
+        
+        // Unhide action workflow panel
+        document.getElementById('postQuizArea').style.display = 'block';
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+
+    function generateAnalysis(score, total, stats) {
+        const grid = document.getElementById('categoryGrid');
+        grid.innerHTML = '';
+        
+        let lowestRate = 1;
+        let weakCategory = 'None! Perfect run.';
+
+        for (let category in stats) {
+            const data = stats[category];
+            if (data.total === 0) continue;
+            
+            const rate = data.correct / data.total;
+            const percentage = Math.round(rate * 100);
+            
+            const card = document.createElement('div');
+            card.className = `analysis-card ${rate < 0.7 ? 'weak' : 'strong'}`;
+            card.innerHTML = `
+                <strong>${category}</strong><br>
+                Score: ${data.correct}/${data.total}<br>
+                <span>${percentage}% Mastery</span>
+            `;
+            grid.appendChild(card);
+
+            if (rate < lowestRate) {
+                lowestRate = rate;
+                weakCategory = category;
+            }
+        }
+
+        const summaryText = document.getElementById('analysisSummary');
+        if (score === total) {
+            summaryText.innerHTML = "🎉 Excellent work! You achieved complete mastery across all Front Office Occupational Health and Safety dimensions.";
+        } else {
+            summaryText.innerHTML = `Your analytics pinpointed that you are performing best overall, but you encountered the most difficulty in the <strong>${weakCategory}</strong> metrics. Reviewing missed items in this bracket is recommended.`;
+        }
+    }
+
+    function filterWrongQuestions() {
+        for (let key in answers) {
+            const questionBlock = document.getElementById(`${key}-block`);
+            if (questionBlock.classList.contains('correct-card')) {
+                questionBlock.style.display = 'none'; // Hide correct selections
+            } else {
+                questionBlock.style.display = 'block'; // Keep wrong entries visible for immediate processing
+            }
+        }
+        // Smooth view transition to top
+        window.scrollTo({top: document.getElementById('scoreArea').offsetTop, behavior: 'smooth'});
+    }
+
+    function resetQuiz() {
+        document.getElementById('quizForm').reset();
+        document.getElementById('scoreArea').style.display = 'none';
+        document.getElementById('postQuizArea').style.display = 'none';
+        
+        for (let key in answers) {
+            const questionBlock = document.getElementById(`${key}-block`);
+            const explanationBlock = document.getElementById(`exp${key.replace('q', '')}`);
+            
+            questionBlock.classList.remove('correct-card', 'wrong-card');
+            explanationBlock.style.display = 'none';
+            questionBlock.style.display = 'block';
+        }
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+</script>
+
+</body>
+</html>
